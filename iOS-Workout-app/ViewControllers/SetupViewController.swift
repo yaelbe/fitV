@@ -32,6 +32,8 @@ class SetupViewController: UIViewController {
         for button in SetupViewController.buttons {
             button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
         }
+        
+        vModel.onStart()
     }
     
     @objc

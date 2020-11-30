@@ -37,6 +37,9 @@ class SetupViewModel {
     var currentCode: String = WorkoutService.shared.getSequence()
     var typedSequence = ""
     
+    func onStart() {
+        WorkoutService.shared.moveBackIfNeeded()
+    }
     func getLabelForButton(tag: Int) -> String {
         return labelForTag(rawValue: tag)?.text ?? ""
     }

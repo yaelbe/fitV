@@ -63,11 +63,6 @@ class WorkoutService {
         guard let workoutDetails = self.workoutDetails else {
             return ""
         }
-        //if there is need for restart code, we want to go back to the start of the current execrice
-        if currentSequence != .setup && execricesIndex > 0 {
-            execricesIndex -= 1
-        }
-        
         switch currentSequence {
         case .setup:
             return workoutDetails.setupSequence ?? ""
@@ -75,6 +70,13 @@ class WorkoutService {
             return String(workoutDetails.reSetupSequence?.first{$0.type == "inside"}?.code ?? 0)
         case .between:
             return String(workoutDetails.reSetupSequence?.first{$0.type == "between"}?.code ?? 0)
+        }
+    }
+    
+    func moveBackIfNeeded() {
+        //if there is need for restart code, we want to go back to the start of the current execrice
+        if currentSequence != .setup && execricesIndex > 0 {
+            execricesIndex -= 1
         }
     }
     
